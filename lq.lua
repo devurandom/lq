@@ -373,6 +373,7 @@ local parser = argparse()
 parser:argument "selector"
   :description("Selector expression")
   :args(1)
+  :convert(bind(lq.match, {lq}))
 parser:argument "input"
   :description("Input files")
   :args("1+")
@@ -380,9 +381,7 @@ parser:argument "input"
   :convert(safe_dofile)
 
 local args = parser:parse()
-
--- Parse the selector and create a filter function
-local filter = assert(lq:match(args.selector), "Parsing selector failed to produce a filter")
+local filter = args.selector
 
 local outputs = {}
 for _,input in ipairs(inputs) do
