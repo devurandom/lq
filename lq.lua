@@ -324,7 +324,7 @@ local lq = grammar{
     + variable("Binary_Expression_Level3"),
   Binary_Expression_Level3 = (variable("Binary_Expression_Level4") * withspace(capture(literal("and"))) * variable("Binary_Expression_Level3"))/binary_operation
     + variable("Binary_Expression_Level4"),
-  Binary_Expression_Level4 = (variable("Binary_Expression_Level5") * withspace(capture(literal("=="))) * variable("Binary_Expression_Level4"))/binary_operation
+  Binary_Expression_Level4 = (variable("Binary_Expression_Level5") * withspace(capture(literal("==") + literal("!="))) * variable("Binary_Expression_Level4"))/binary_operation
     + variable("Binary_Expression_Level5"),
   Binary_Expression_Level5 = (variable("Filter_Expression") * withspace(capture(literal(","))) * variable("Binary_Expression_Level5"))/binary_operation
     + variable("Filter_Expression"),
