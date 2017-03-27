@@ -165,7 +165,7 @@ local filters = {
       assert(index, "Argument missing: index(*index*)")
       if type(index) == "string" and sub(index, #index) == "?" then -- FIXME: Implement this as unary operator
         if not input then
-          return nil
+          return {}
         end
 
         index = sub(index, 1, #index - 1)
@@ -241,7 +241,7 @@ local binary_operators = {
     return function(input)
       local filter1_outputs = filter1(input)
       if #filter1_outputs == 0 then
-        return {filter2(nil)} -- Ensure chained filters are executed at least once. Necessary for `not()` to work.
+        return filter2(nil) -- Ensure chained filters are executed at least once. Necessary for `not()` to work.
       end
 
       local outputs = {}
