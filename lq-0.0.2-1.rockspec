@@ -1,8 +1,8 @@
 package = "lq"
-version = "0.0.1-0"
+version = "0.0.2-1"
 source = {
-  url = "https://github.com/urzds/lq/archive/v0.0.1-0.tar.gz",
-  dir = "lq-0.0.1-0"
+  url = "https://github.com/urzds/lq/archive/v0.0.2-1.tar.gz",
+  dir = "lq-0.0.2-1"
 }
 description = {
   summary = "command-line Lua table processor",
@@ -13,7 +13,10 @@ description = {
   license = "MIT <http://opensource.org/licenses/MIT>"
 }
 dependencies = {
-  "lpeg >= 1.0"
+  "argparse >= 0.5",
+  "lpeg >= 1.0",
+  "microlight >= 1.0",
+  "stdlib >= 41",
 }
 build = {
   type = "none",
