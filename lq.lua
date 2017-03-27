@@ -36,7 +36,8 @@ local unpack = require("table").unpack
 
 local sub = require("string").sub
 
-local mltostring = require("ml").tstring
+-- We could use std.tostring, but its output is very, very ugly for lists
+local tostring = require("ml").tstring
 
 local lpeg = require("lpeg")
 
@@ -122,14 +123,14 @@ local identifier = capture(identifier_char * zeroormore(identifier_char + digit)
 -- Helper for certain functions, which expect exactly one argument
 local function ensure_single_result(filter, input)
   local outputs = filter(input)
-  assert(#outputs <= 1, "Expected max. one result, got " .. #outputs .. ": " .. mltostring(outputs))
+  assert(#outputs <= 1, "Expected max. one result, got " .. #outputs .. ": " .. tostring(outputs))
   return outputs[1]
 end
 
 --- Nicer printing for tables, everything else behaves the same as before
 local function prettyprint(object)
   if type(object) == "table" then
-    object = mltostring(object, {spacing="", indent="  "})
+    object = tostring(object, {spacing="", indent="  "})
   end
   print(object)
 end
@@ -307,7 +308,7 @@ local function if_then_else(filter_condition, filter_true, filter_false)
 end
 
 local function parse_error(...)
-  return error("Parse error at: " .. mltostring(...))
+  return error("Parse error at: " .. tostring(...))
 end
 
 -- Grammar which builds the filter function
